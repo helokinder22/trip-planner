@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Navigation, StickyNote, Trash2, Map, GripVertical, Car } from "lucide-react";
+import { MapPin, StickyNote, Trash2, Map, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import TransportPicker, { getTransportIcon, getTransportLabel } from "./TransportPicker";
 import NotesPanel from "./NotesPanel";
 
 const CARD_COLORS = [
@@ -17,7 +16,6 @@ const CARD_COLORS = [
 export default function LocationCard({ location, index, onUpdate, onDelete, onShowMap, previousLocation }) {
   const [activePanel, setActivePanel] = useState(null);
   const colorScheme = CARD_COLORS[index % CARD_COLORS.length];
-  const TransportIcon = getTransportIcon(location.transportation);
 
   const togglePanel = (panel) => {
     setActivePanel(prev => prev === panel ? null : panel);
@@ -46,13 +44,6 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
               </h3>
               {location.address && (
                 <p className="text-sm text-stone-400 mt-1 truncate">{location.address}</p>
-              )}
-              {/* Transport badge */}
-              {location.transportation && TransportIcon && (
-                <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/70 border border-white text-xs font-medium text-stone-600">
-                  <TransportIcon className="w-3 h-3" />
-                  {getTransportLabel(location.transportation)}
-                </div>
               )}
             </div>
           </div>
@@ -84,12 +75,6 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
             }}
           />
           <ActionButton
-            icon={Navigation}
-            label="Transport"
-            active={activePanel === "transport"}
-            onClick={() => togglePanel("transport")}
-          />
-          <ActionButton
             icon={StickyNote}
             label="Notes"
             active={activePanel === "notes"}
@@ -99,13 +84,6 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
         </div>
 
         {/* Expandable panels */}
-        <TransportPicker
-          selected={location.transportation}
-          onSelect={(val) => onUpdate(location.id, { transportation: val })}
-          isOpen={activePanel === "transport"}
-          currentLocation={location}
-          previousLocation={previousLocation}
-        />
         <NotesPanel
           notes={location.notes}
           onSave={(notes) => onUpdate(location.id, { notes })}
