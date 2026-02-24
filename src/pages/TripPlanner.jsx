@@ -97,11 +97,11 @@ export default function TripPlanner() {
 
         {/* Route connector line */}
         {locations.length > 1 && (
-          <div className="flex items-center justify-center gap-2 mt-8 text-stone-300">
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent to-stone-200" />
+          <div className="flex items-center justify-center gap-2 mt-8 text-[#5DBEBD]">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent to-[#5DBEBD]" />
             <MapPin className="w-4 h-4" />
             <span className="text-xs font-medium">{locations.length} stops</span>
-            <div className="h-px flex-1 bg-gradient-to-l from-transparent to-stone-200" />
+            <div className="h-px flex-1 bg-gradient-to-l from-transparent to-[#5DBEBD]" />
           </div>
         )}
       </main>
