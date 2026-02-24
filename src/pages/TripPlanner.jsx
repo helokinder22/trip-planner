@@ -14,6 +14,7 @@ export default function TripPlanner() {
   const [formOpen, setFormOpen] = useState(false);
   const [mapLocation, setMapLocation] = useState(null);
   const [fullMapOpen, setFullMapOpen] = useState(false);
+  const [showMapOverlay, setShowMapOverlay] = useState(false);
   const queryClient = useQueryClient();
 
   const { data: locations = [], isLoading } = useQuery({
@@ -40,6 +41,23 @@ export default function TripPlanner() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["tripLocations"] }),
   });
 
+  const buildMapUrl = () => {
+    if (locations.length === 0) return null;
+    if (locations.length === 1) {
+      const query = encodeURIComponent(locations[0].address || locations[0].name);
+      return `https://www.google.com/maps?q=${query}&output=embed`;
+    }
+
+    const origin = encodeURIComponent(locations[0].address || locations[0].name);
+    const destination = encodeURIComponent(locations[locations.length - 1].address || locations[locations.length - 1].name);
+    const waypoints = locations.slice(1, -1)
+      .map(loc => encodeURIComponent(loc.address || loc.name))
+      .join('|');
+    const waypointParam = waypoints ? `&waypoints=${waypoints}` : '';
+    
+    return `https://www.google.com/maps/embed/v1/directions?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&origin=${origin}&destination=${destination}${waypointParam}&mode=driving`;
+  };
+
   return (
     <div className="min-h-screen bg-[#FAF8F5]">
       {/* Header */}
@@ -60,11 +78,15 @@ export default function TripPlanner() {
             {locations.length > 0 && (
               <>
                 <button
-                  onClick={() => setFullMapOpen(true)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#E8725A] text-white text-xs font-medium hover:bg-[#D4594A] transition-colors shadow-sm"
+                  onClick={() => setShowMapOverlay(!showMapOverlay)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors shadow-sm ${
+                    showMapOverlay 
+                      ? "bg-stone-800 text-white" 
+                      : "bg-[#E8725A] text-white hover:bg-[#D4594A]"
+                  }`}
                 >
                   <Map className="w-3 h-3" />
-                  View Route
+                  {showMapOverlay ? "Hide Map" : "Show Map"}
                 </button>
                 <div className="flex -space-x-1">
                   {locations.slice(0, 4).map((_, i) => (
@@ -84,6 +106,22 @@ export default function TripPlanner() {
           </div>
         </div>
       </header>
+
+      {/* Map Overlay */}
+      {showMapOverlay && locations.length > 0 && (
+        <div className="fixed inset-0 top-[73px] z-30 bg-white">
+          <iframe
+            src={buildMapUrl()}
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Full trip route"
+          />
+        </div>
+      )}
 
       {/* Main content */}
       <main className="max-w-xl mx-auto px-5 py-6">
