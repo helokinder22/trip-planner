@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { AnimatePresence } from "framer-motion";
-import { MapPin, Plane } from "lucide-react";
+import { MapPin, Plane, Map } from "lucide-react";
 
 import AddLocationForm from "@/components/trip/AddLocationForm";
 import LocationCard from "@/components/trip/LocationCard";
 import MapModal from "@/components/trip/MapModal";
+import FullMapView from "@/components/trip/FullMapView";
 import EmptyState from "@/components/trip/EmptyState";
 
 export default function TripPlanner() {
   const [formOpen, setFormOpen] = useState(false);
   const [mapLocation, setMapLocation] = useState(null);
+  const [fullMapOpen, setFullMapOpen] = useState(false);
   const queryClient = useQueryClient();
 
   const { data: locations = [], isLoading } = useQuery({
@@ -54,21 +56,30 @@ export default function TripPlanner() {
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
             {locations.length > 0 && (
-              <div className="flex -space-x-1">
-                {locations.slice(0, 4).map((_, i) => (
-                  <div
-                    key={i}
-                    className={`h-2 w-2 rounded-full border border-[#FAF8F5] ${
-                      ["bg-amber-400", "bg-sky-400", "bg-emerald-400", "bg-violet-400"][i % 4]
-                    }`}
-                  />
-                ))}
-                {locations.length > 4 && (
-                  <span className="text-[10px] text-stone-400 ml-2">+{locations.length - 4}</span>
-                )}
-              </div>
+              <>
+                <button
+                  onClick={() => setFullMapOpen(true)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#E8725A] text-white text-xs font-medium hover:bg-[#D4594A] transition-colors shadow-sm"
+                >
+                  <Map className="w-3 h-3" />
+                  View Route
+                </button>
+                <div className="flex -space-x-1">
+                  {locations.slice(0, 4).map((_, i) => (
+                    <div
+                      key={i}
+                      className={`h-2 w-2 rounded-full border border-[#FAF8F5] ${
+                        ["bg-amber-400", "bg-sky-400", "bg-emerald-400", "bg-violet-400"][i % 4]
+                      }`}
+                    />
+                  ))}
+                  {locations.length > 4 && (
+                    <span className="text-[10px] text-stone-400 ml-2">+{locations.length - 4}</span>
+                  )}
+                </div>
+              </>
             )}
           </div>
         </div>
@@ -124,6 +135,13 @@ export default function TripPlanner() {
         location={mapLocation}
         open={!!mapLocation}
         onClose={() => setMapLocation(null)}
+      />
+
+      {/* Full Route Map */}
+      <FullMapView
+        locations={locations}
+        open={fullMapOpen}
+        onClose={() => setFullMapOpen(false)}
       />
     </div>
   );
