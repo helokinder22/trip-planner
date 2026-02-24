@@ -42,12 +42,12 @@ export default function TripPlanner() {
   });
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5]">
+    <div className="min-h-screen bg-gradient-to-br from-[#5DBEBD]/5 via-white to-[#4FA9D8]/5">
       {/* Header */}
-      <header className="sticky top-0 z-20 bg-[#FAF8F5]/80 backdrop-blur-xl border-b border-stone-100">
+      <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-xl border-b border-stone-100">
         <div className="max-w-xl mx-auto px-5 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-[#E8725A] to-[#D4594A] flex items-center justify-center shadow-lg shadow-[#E8725A]/20">
+            <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-[#5DBEBD] to-[#4FA9D8] flex items-center justify-center shadow-lg shadow-[#5DBEBD]/20">
               <Plane className="w-4.5 h-4.5 text-white" strokeWidth={2} />
             </div>
             <div>
