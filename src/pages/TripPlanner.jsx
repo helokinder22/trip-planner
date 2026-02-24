@@ -46,13 +46,11 @@ export default function TripPlanner() {
       {/* Header */}
       <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-xl border-b border-stone-100">
         <div className="max-w-xl mx-auto px-5 py-6 flex items-center justify-center">
-          <div className="h-24 w-24 rounded-2xl overflow-hidden">
-            <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/699e2cb20cbe0d4ef8ad57e7/bebfb02c0_Firefly_GeminiFlash_removetheouterrectangle2558992.png" 
-              alt="Trip Planner" 
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <img 
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/699e2cb20cbe0d4ef8ad57e7/bebfb02c0_Firefly_GeminiFlash_removetheouterrectangle2558992.png" 
+            alt="Trip Planner" 
+            className="h-32 w-32 object-contain"
+          />
         </div>
       </header>
 
