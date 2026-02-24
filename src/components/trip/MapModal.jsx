@@ -22,7 +22,14 @@ export default function MapModal({ location, previousLocation, open, onClose }) 
 
   const buildExternalUrl = () => {
     const destination = encodeURIComponent(location.address || location.name);
-    return `https://www.google.com/maps/dir/?api=1&origin=&destination=${destination}&travelmode=${mode}`;
+    // Use Apple Maps URL scheme which opens native Maps app on iOS
+    const modeMap = {
+      driving: 'd',
+      walking: 'w',
+      transit: 'r',
+      bicycling: 'w'
+    };
+    return `http://maps.apple.com/?daddr=${destination}&dirflg=${modeMap[mode]}`;
   };
 
   return (
@@ -92,7 +99,7 @@ export default function MapModal({ location, previousLocation, open, onClose }) 
             rel="noopener noreferrer"
             className="mt-3 flex items-center justify-center gap-2 text-sm text-[#5DBEBD] hover:text-[#4FA9D8] font-medium transition-colors"
           >
-            Open in Google Maps
+            Open in Maps
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>
