@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { AnimatePresence } from "framer-motion";
-import { MapPin, Plane, Map } from "lucide-react";
+import { MapPin, Plane, Map, Sparkles } from "lucide-react";
 
 import AddLocationForm from "@/components/trip/AddLocationForm";
 import LocationCard from "@/components/trip/LocationCard";
