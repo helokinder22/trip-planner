@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Navigation, StickyNote, Trash2, Map, GripVertical } from "lucide-react";
+import { MapPin, Navigation, StickyNote, Trash2, Map, GripVertical, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import TransportPicker, { getTransportIcon, getTransportLabel } from "./TransportPicker";
 import NotesPanel from "./NotesPanel";
@@ -73,6 +73,15 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
             label="Map"
             active={false}
             onClick={() => onShowMap(location)}
+          />
+          <ActionButton
+            icon={Car}
+            label="Uber"
+            active={false}
+            onClick={() => {
+              const destination = encodeURIComponent(location.address || location.name);
+              window.open(`https://m.uber.com/ul/?action=setPickup&dropoff[formatted_address]=${destination}`, '_blank');
+            }}
           />
           <ActionButton
             icon={Navigation}
