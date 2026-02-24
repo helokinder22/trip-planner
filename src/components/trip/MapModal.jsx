@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { MapPin, ExternalLink, Car, Footprints, Train, Bike } from "lucide-react";
+import { MapPin, ExternalLink, Car, Footprints, Train, Bike, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const TRANSPORT_MODES = [
   { value: "driving", label: "Driving", icon: Car },
@@ -28,12 +29,22 @@ export default function MapModal({ location, previousLocation, open, onClose }) 
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[700px] p-0 rounded-2xl overflow-hidden border-0">
         <DialogHeader className="p-5 pb-3">
-          <DialogTitle className="flex items-center gap-2 text-stone-800">
-            <div className="h-7 w-7 rounded-full bg-[#5DBEBD]/10 flex items-center justify-center">
-              <MapPin className="w-3.5 h-3.5 text-[#5DBEBD]" />
-            </div>
-            {location.name}
-          </DialogTitle>
+          <div className="flex items-start justify-between">
+            <DialogTitle className="flex items-center gap-2 text-stone-800">
+              <div className="h-7 w-7 rounded-full bg-[#5DBEBD]/10 flex items-center justify-center">
+                <MapPin className="w-3.5 h-3.5 text-[#5DBEBD]" />
+              </div>
+              {location.name}
+            </DialogTitle>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onClose}
+              className="h-8 w-8 rounded-full text-stone-400 hover:text-stone-600 hover:bg-stone-100"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
           {location.address && (
             <p className="text-sm text-stone-400 ml-9">{location.address}</p>
           )}
