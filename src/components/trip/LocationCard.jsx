@@ -1,0 +1,125 @@
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { MapPin, Navigation, StickyNote, Trash2, Map, GripVertical } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import TransportPicker, { getTransportIcon, getTransportLabel } from "./TransportPicker";
+import NotesPanel from "./NotesPanel";
+
+const CARD_COLORS = [
+  { bg: "bg-gradient-to-br from-amber-50 to-orange-50", accent: "border-l-amber-400" },
+  { bg: "bg-gradient-to-br from-sky-50 to-blue-50", accent: "border-l-sky-400" },
+  { bg: "bg-gradient-to-br from-emerald-50 to-green-50", accent: "border-l-emerald-400" },
+  { bg: "bg-gradient-to-br from-violet-50 to-purple-50", accent: "border-l-violet-400" },
+  { bg: "bg-gradient-to-br from-rose-50 to-pink-50", accent: "border-l-rose-400" },
+  { bg: "bg-gradient-to-br from-teal-50 to-cyan-50", accent: "border-l-teal-400" },
+];
+
+export default function LocationCard({ location, index, onUpdate, onDelete, onShowMap }) {
+  const [activePanel, setActivePanel] = useState(null);
+  const colorScheme = CARD_COLORS[index % CARD_COLORS.length];
+  const TransportIcon = getTransportIcon(location.transportation);
+
+  const togglePanel = (panel) => {
+    setActivePanel(prev => prev === panel ? null : panel);
+  };
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 20, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: -20, scale: 0.97 }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+      className={`${colorScheme.bg} rounded-2xl border border-white/80 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border-l-4 ${colorScheme.accent}`}
+    >
+      <div className="p-5">
+        {/* Header */}
+        <div className="flex items-start justify-between">
+          <div className="flex items-start gap-3 flex-1 min-w-0">
+            <div className="flex flex-col items-center gap-1 pt-0.5">
+              <span className="text-[11px] font-bold text-stone-300">{String(index + 1).padStart(2, '0')}</span>
+              <div className="h-6 w-px bg-stone-200" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="font-semibold text-stone-800 text-lg leading-tight truncate">
+                {location.name}
+              </h3>
+              {location.address && (
+                <p className="text-sm text-stone-400 mt-1 truncate">{location.address}</p>
+              )}
+              {/* Transport badge */}
+              {location.transportation && TransportIcon && (
+                <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/70 border border-white text-xs font-medium text-stone-600">
+                  <TransportIcon className="w-3 h-3" />
+                  {getTransportLabel(location.transportation)}
+                </div>
+              )}
+            </div>
+          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => onDelete(location.id)}
+            className="text-stone-300 hover:text-red-400 hover:bg-red-50 rounded-xl h-8 w-8 -mt-1 -mr-1"
+          >
+            <Trash2 className="w-4 h-4" />
+          </Button>
+        </div>
+
+        {/* Action buttons */}
+        <div className="flex gap-2 mt-4">
+          <ActionButton
+            icon={Map}
+            label="Map"
+            active={false}
+            onClick={() => onShowMap(location)}
+          />
+          <ActionButton
+            icon={Navigation}
+            label="Transport"
+            active={activePanel === "transport"}
+            onClick={() => togglePanel("transport")}
+          />
+          <ActionButton
+            icon={StickyNote}
+            label="Notes"
+            active={activePanel === "notes"}
+            hasContent={!!location.notes}
+            onClick={() => togglePanel("notes")}
+          />
+        </div>
+
+        {/* Expandable panels */}
+        <TransportPicker
+          selected={location.transportation}
+          onSelect={(val) => onUpdate(location.id, { transportation: val })}
+          isOpen={activePanel === "transport"}
+        />
+        <NotesPanel
+          notes={location.notes}
+          onSave={(notes) => onUpdate(location.id, { notes })}
+          isOpen={activePanel === "notes"}
+        />
+      </div>
+    </motion.div>
+  );
+}
+
+function ActionButton({ icon: Icon, label, active, hasContent, onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium transition-all duration-200 ${
+        active
+          ? "bg-stone-800 text-white shadow-md"
+          : "bg-white/60 text-stone-500 hover:bg-white hover:text-stone-700 hover:shadow-sm border border-white/80"
+      }`}
+    >
+      <Icon className="w-3.5 h-3.5" />
+      {label}
+      {hasContent && !active && (
+        <span className="w-1.5 h-1.5 rounded-full bg-[#E8725A]" />
+      )}
+    </button>
+  );
+}
