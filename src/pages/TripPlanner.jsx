@@ -46,11 +46,15 @@ export default function TripPlanner() {
       {/* Header */}
       <header className="sticky top-0 z-20 border-b border-stone-100">
         <div className="max-w-xl mx-auto px-5 py-6 flex items-center justify-center">
-          <img 
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/699e2cb20cbe0d4ef8ad57e7/b82608c84_Firefly_GeminiFlash_removetheouterrectangle2558992.png" 
-            alt="Trip Planner" 
-            className="h-24 w-24 object-contain"
-          />
+          <div className="relative">
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/699e2cb20cbe0d4ef8ad57e7/b82608c84_Firefly_GeminiFlash_removetheouterrectangle2558992.png" 
+              alt="Trip Planner" 
+              className="h-24 w-24 object-contain"
+              style={{ transform: 'rotate(-5deg)' }}
+            />
+            <Sparkles className="absolute -top-1 -right-1 w-5 h-5 text-yellow-400 animate-pulse" />
+          </div>
         </div>
       </header>
 
