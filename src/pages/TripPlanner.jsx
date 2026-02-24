@@ -45,8 +45,8 @@ export default function TripPlanner() {
     <div className="min-h-screen bg-gradient-to-br from-[#5DBEBD]/5 via-white to-[#4FA9D8]/5">
       {/* Header */}
       <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-xl border-b border-stone-100">
-        <div className="max-w-xl mx-auto px-5 py-5 flex items-center justify-center">
-          <div className="h-16 w-16 rounded-2xl overflow-hidden shadow-xl">
+        <div className="max-w-xl mx-auto px-5 py-6 flex items-center justify-center">
+          <div className="h-24 w-24 rounded-2xl overflow-hidden shadow-xl">
             <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/699e2cb20cbe0d4ef8ad57e7/bebfb02c0_Firefly_GeminiFlash_removetheouterrectangle2558992.png" 
               alt="Trip Planner" 
