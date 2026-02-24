@@ -1,6 +1,7 @@
 import React from "react";
-import { Car, Train, Bus, Plane, Footprints, Bike, Ship, CircleDot } from "lucide-react";
+import { Car, Train, Bus, Plane, Footprints, Bike, Ship, CircleDot, MapPin, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 const TRANSPORT_OPTIONS = [
   { value: "car", label: "Car", icon: Car },
@@ -13,7 +14,23 @@ const TRANSPORT_OPTIONS = [
   { value: "taxi", label: "Taxi", icon: CircleDot },
 ];
 
-export default function TransportPicker({ selected, onSelect, isOpen }) {
+export default function TransportPicker({ selected, onSelect, isOpen, currentLocation, previousLocation }) {
+  const handleDirections = () => {
+    if (!currentLocation) return;
+    
+    const origin = previousLocation ? encodeURIComponent(previousLocation.address || previousLocation.name) : '';
+    const destination = encodeURIComponent(currentLocation.address || currentLocation.name);
+    
+    let url;
+    if (origin) {
+      url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
+    } else {
+      url = `https://www.google.com/maps/dir/?api=1&destination=${destination}`;
+    }
+    
+    window.open(url, '_blank');
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -24,7 +41,17 @@ export default function TransportPicker({ selected, onSelect, isOpen }) {
           className="overflow-hidden"
         >
           <div className="pt-4 pb-1">
-            <p className="text-xs font-medium text-stone-400 uppercase tracking-wider mb-3">Getting there by</p>
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-xs font-medium text-stone-400 uppercase tracking-wider">Getting there by</p>
+              <button
+                onClick={handleDirections}
+                className="flex items-center gap-1 text-xs font-medium text-[#E8725A] hover:text-[#D4594A] transition-colors"
+              >
+                <MapPin className="w-3 h-3" />
+                Directions
+                <ExternalLink className="w-2.5 h-2.5" />
+              </button>
+            </div>
             <div className="grid grid-cols-4 gap-2">
               {TRANSPORT_OPTIONS.map(({ value, label, icon: Icon }) => (
                 <button

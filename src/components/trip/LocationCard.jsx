@@ -14,7 +14,7 @@ const CARD_COLORS = [
   { bg: "bg-gradient-to-br from-teal-50 to-cyan-50", accent: "border-l-teal-400" },
 ];
 
-export default function LocationCard({ location, index, onUpdate, onDelete, onShowMap }) {
+export default function LocationCard({ location, index, onUpdate, onDelete, onShowMap, previousLocation }) {
   const [activePanel, setActivePanel] = useState(null);
   const colorScheme = CARD_COLORS[index % CARD_COLORS.length];
   const TransportIcon = getTransportIcon(location.transportation);
@@ -103,6 +103,8 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
           selected={location.transportation}
           onSelect={(val) => onUpdate(location.id, { transportation: val })}
           isOpen={activePanel === "transport"}
+          currentLocation={location}
+          previousLocation={previousLocation}
         />
         <NotesPanel
           notes={location.notes}

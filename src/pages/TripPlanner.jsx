@@ -101,6 +101,7 @@ export default function TripPlanner() {
                   onUpdate={(id, data) => updateMutation.mutate({ id, data })}
                   onDelete={(id) => deleteMutation.mutate(id)}
                   onShowMap={(loc) => setMapLocation(loc)}
+                  previousLocation={idx > 0 ? locations[idx - 1] : null}
                 />
               ))}
             </AnimatePresence>
