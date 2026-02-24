@@ -47,8 +47,12 @@ export default function TripPlanner() {
       <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-xl border-b border-stone-100">
         <div className="max-w-xl mx-auto px-5 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-[#5DBEBD] to-[#4FA9D8] flex items-center justify-center shadow-lg shadow-[#5DBEBD]/20">
-              <Plane className="w-4.5 h-4.5 text-white" strokeWidth={2} />
+            <div className="h-9 w-9 rounded-xl overflow-hidden shadow-lg">
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/699e2cb20cbe0d4ef8ad57e7/bebfb02c0_Firefly_GeminiFlash_removetheouterrectangle2558992.png" 
+                alt="Trip Planner" 
+                className="w-full h-full object-cover"
+              />
             </div>
             <div>
               <h1 className="text-lg font-bold text-stone-800 tracking-tight">Trip Planner</h1>
