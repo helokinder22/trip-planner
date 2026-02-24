@@ -44,7 +44,7 @@ export default function TripPlanner() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#5DBEBD]/5 via-white to-[#4FA9D8]/5">
       {/* Header */}
-      <header className="sticky top-0 z-20 border-b-2 border-[#5DBEBD]">
+      <header className="border-b-2 border-[#5DBEBD]">
         <div className="max-w-xl mx-auto px-5 py-6 flex items-center justify-center">
           <div className="relative">
             <img 
