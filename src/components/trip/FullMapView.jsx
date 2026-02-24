@@ -29,29 +29,21 @@ export default function FullMapView({ locations, open, onClose }) {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-full w-screen h-screen p-0 rounded-none overflow-hidden border-0 m-0">
-        <DialogHeader className="absolute top-0 left-0 right-0 z-10 p-4 bg-white/95 backdrop-blur-sm border-b border-stone-200 shadow-sm">
-          <div className="flex items-center justify-between">
-            <DialogTitle className="flex items-center gap-2 text-stone-800">
-              <div className="h-7 w-7 rounded-full bg-[#E8725A]/10 flex items-center justify-center">
-                <MapPin className="w-3.5 h-3.5 text-[#E8725A]" />
-              </div>
-              Full Trip Route
-              <span className="text-sm text-stone-400 font-normal ml-1">• {locations.length} stops</span>
-            </DialogTitle>
-            <button
-              onClick={onClose}
-              className="h-8 w-8 rounded-lg bg-stone-100 hover:bg-stone-200 flex items-center justify-center transition-colors"
-            >
-              <span className="text-stone-600 text-xl leading-none">×</span>
-            </button>
-          </div>
+      <DialogContent className="sm:max-w-[95vw] max-w-[95vw] h-[90vh] p-0 rounded-2xl overflow-hidden border-0">
+        <DialogHeader className="p-5 pb-3 border-b border-stone-100">
+          <DialogTitle className="flex items-center gap-2 text-stone-800">
+            <div className="h-7 w-7 rounded-full bg-[#E8725A]/10 flex items-center justify-center">
+              <MapPin className="w-3.5 h-3.5 text-[#E8725A]" />
+            </div>
+            Full Trip Route
+          </DialogTitle>
+          <p className="text-sm text-stone-400 ml-9">{locations.length} stops on your journey</p>
         </DialogHeader>
         
-        <div className="w-full h-full overflow-hidden pt-16">
-          <div className="grid md:grid-cols-[280px,1fr] h-full">
+        <div className="flex-1 h-full overflow-hidden">
+          <div className="grid md:grid-cols-[320px,1fr] h-full">
             {/* Sidebar with route details */}
-            <div className="bg-white p-4 overflow-y-auto border-r border-stone-200 hidden md:block shadow-lg">
+            <div className="bg-stone-50 p-4 overflow-y-auto border-r border-stone-100 hidden md:block">
               <h3 className="text-xs font-semibold text-stone-400 uppercase tracking-wider mb-3">
                 Your Route
               </h3>
