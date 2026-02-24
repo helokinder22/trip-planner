@@ -60,13 +60,6 @@ export default function TripPlanner() {
           <div className="flex items-center gap-2">
             {locations.length > 0 && (
               <>
-                <button
-                  onClick={() => setFullMapOpen(true)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#5DBEBD] text-white text-xs font-medium hover:bg-[#4FA9D8] transition-colors shadow-sm"
-                >
-                  <Map className="w-3 h-3" />
-                  View Route
-                </button>
                 <div className="flex -space-x-1">
                   {locations.slice(0, 4).map((_, i) => (
                     <div
