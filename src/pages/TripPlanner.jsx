@@ -49,7 +49,7 @@ export default function TripPlanner() {
           <img 
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/699e2cb20cbe0d4ef8ad57e7/bebfb02c0_Firefly_GeminiFlash_removetheouterrectangle2558992.png" 
             alt="Trip Planner" 
-            className="h-[60px] w-[60px] object-contain"
+            className="h-24 w-24 object-contain"
           />
         </div>
       </header>
