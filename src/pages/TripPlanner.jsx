@@ -45,40 +45,13 @@ export default function TripPlanner() {
     <div className="min-h-screen bg-gradient-to-br from-[#5DBEBD]/5 via-white to-[#4FA9D8]/5">
       {/* Header */}
       <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-xl border-b border-stone-100">
-        <div className="max-w-xl mx-auto px-5 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/699e2cb20cbe0d4ef8ad57e7/bebfb02c0_Firefly_GeminiFlash_removetheouterrectangle2558992.png" 
-                alt="Trip Planner" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div>
-              <h1 className="text-lg font-bold text-stone-800 tracking-tight">Trip Planner</h1>
-              <p className="text-[11px] text-stone-400 font-medium -mt-0.5">
-                {locations.length} {locations.length === 1 ? "destination" : "destinations"}
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            {locations.length > 0 && (
-              <>
-                <div className="flex -space-x-1">
-                  {locations.slice(0, 4).map((_, i) => (
-                    <div
-                      key={i}
-                      className={`h-2 w-2 rounded-full border border-[#FAF8F5] ${
-                        ["bg-[#5DBEBD]", "bg-[#4FA9D8]", "bg-[#6AC5C4]", "bg-[#3D8BB8]"][i % 4]
-                      }`}
-                    />
-                  ))}
-                  {locations.length > 4 && (
-                    <span className="text-[10px] text-stone-400 ml-2">+{locations.length - 4}</span>
-                  )}
-                </div>
-              </>
-            )}
+        <div className="max-w-xl mx-auto px-5 py-5 flex items-center justify-center">
+          <div className="h-16 w-16 rounded-2xl overflow-hidden shadow-xl">
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/699e2cb20cbe0d4ef8ad57e7/bebfb02c0_Firefly_GeminiFlash_removetheouterrectangle2558992.png" 
+              alt="Trip Planner" 
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </header>
