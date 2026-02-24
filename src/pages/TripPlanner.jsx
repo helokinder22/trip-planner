@@ -13,6 +13,7 @@ import EmptyState from "@/components/trip/EmptyState";
 export default function TripPlanner() {
   const [formOpen, setFormOpen] = useState(false);
   const [mapLocation, setMapLocation] = useState(null);
+  const [mapPreviousLocation, setMapPreviousLocation] = useState(null);
   const [fullMapOpen, setFullMapOpen] = useState(false);
   const queryClient = useQueryClient();
 
@@ -111,7 +112,10 @@ export default function TripPlanner() {
                   index={idx}
                   onUpdate={(id, data) => updateMutation.mutate({ id, data })}
                   onDelete={(id) => deleteMutation.mutate(id)}
-                  onShowMap={(loc) => setMapLocation(loc)}
+                  onShowMap={(loc, prevLoc) => {
+                    setMapLocation(loc);
+                    setMapPreviousLocation(prevLoc);
+                  }}
                   previousLocation={idx > 0 ? locations[idx - 1] : null}
                 />
               ))}
@@ -133,8 +137,12 @@ export default function TripPlanner() {
       {/* Map Modal */}
       <MapModal
         location={mapLocation}
+        previousLocation={mapPreviousLocation}
         open={!!mapLocation}
-        onClose={() => setMapLocation(null)}
+        onClose={() => {
+          setMapLocation(null);
+          setMapPreviousLocation(null);
+        }}
       />
 
       {/* Full Route Map */}

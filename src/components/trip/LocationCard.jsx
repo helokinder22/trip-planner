@@ -72,7 +72,7 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
             icon={Map}
             label="Map"
             active={false}
-            onClick={() => onShowMap(location)}
+            onClick={() => onShowMap(location, previousLocation)}
           />
           <ActionButton
             icon={Car}
