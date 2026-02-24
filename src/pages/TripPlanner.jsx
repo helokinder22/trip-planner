@@ -50,10 +50,10 @@ export default function TripPlanner() {
             <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/699e2cb20cbe0d4ef8ad57e7/b82608c84_Firefly_GeminiFlash_removetheouterrectangle2558992.png" 
               alt="Trip Planner" 
-              className="h-24 w-24 object-contain"
+              className="h-32 w-32 object-contain"
               style={{ transform: 'rotate(-5deg)' }}
             />
-            <Sparkles className="absolute -top-1 -right-1 w-5 h-5 text-yellow-400 animate-pulse" />
+            <Sparkles className="absolute -top-2 -right-2 w-6 h-6 text-yellow-400 animate-pulse" />
           </div>
         </div>
       </header>
