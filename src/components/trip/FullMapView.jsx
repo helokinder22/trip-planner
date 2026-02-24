@@ -32,8 +32,8 @@ export default function FullMapView({ locations, open, onClose }) {
       <DialogContent className="sm:max-w-[95vw] max-w-[95vw] h-[90vh] p-0 rounded-2xl overflow-hidden border-0">
         <DialogHeader className="p-5 pb-3 border-b border-stone-100">
           <DialogTitle className="flex items-center gap-2 text-stone-800">
-            <div className="h-7 w-7 rounded-full bg-[#E8725A]/10 flex items-center justify-center">
-              <MapPin className="w-3.5 h-3.5 text-[#E8725A]" />
+            <div className="h-7 w-7 rounded-full bg-[#5DBEBD]/10 flex items-center justify-center">
+              <MapPin className="w-3.5 h-3.5 text-[#5DBEBD]" />
             </div>
             Full Trip Route
           </DialogTitle>
@@ -54,8 +54,8 @@ export default function FullMapView({ locations, open, onClose }) {
                     <div key={loc.id}>
                       <div className="flex items-start gap-3">
                         <div className="flex flex-col items-center">
-                          <div className="h-8 w-8 rounded-full bg-white border-2 border-[#E8725A] flex items-center justify-center shadow-sm">
-                            <span className="text-xs font-bold text-[#E8725A]">{idx + 1}</span>
+                          <div className="h-8 w-8 rounded-full bg-white border-2 border-[#5DBEBD] flex items-center justify-center shadow-sm">
+                            <span className="text-xs font-bold text-[#5DBEBD]">{idx + 1}</span>
                           </div>
                           {idx < locations.length - 1 && (
                             <div className="w-0.5 h-12 bg-stone-200 my-1" />

@@ -41,8 +41,8 @@ export default function MapModal({ location, previousLocation, open, onClose }) 
       <DialogContent className="sm:max-w-[700px] p-0 rounded-2xl overflow-hidden border-0">
         <DialogHeader className="p-5 pb-3">
           <DialogTitle className="flex items-center gap-2 text-stone-800">
-            <div className="h-7 w-7 rounded-full bg-[#E8725A]/10 flex items-center justify-center">
-              <MapPin className="w-3.5 h-3.5 text-[#E8725A]" />
+            <div className="h-7 w-7 rounded-full bg-[#5DBEBD]/10 flex items-center justify-center">
+              <MapPin className="w-3.5 h-3.5 text-[#5DBEBD]" />
             </div>
             {location.name}
           </DialogTitle>
@@ -66,7 +66,7 @@ export default function MapModal({ location, previousLocation, open, onClose }) 
                     onClick={() => setMode(value)}
                     className={`flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl transition-all duration-200 ${
                       mode === value
-                        ? "bg-[#E8725A] text-white shadow-md shadow-[#E8725A]/20"
+                        ? "bg-[#5DBEBD] text-white shadow-md shadow-[#5DBEBD]/20"
                         : "bg-stone-50 text-stone-500 hover:bg-stone-100 hover:text-stone-700"
                     }`}
                   >
@@ -95,7 +95,7 @@ export default function MapModal({ location, previousLocation, open, onClose }) 
             href={buildExternalUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 flex items-center justify-center gap-2 text-sm text-[#E8725A] hover:text-[#D4594A] font-medium transition-colors"
+            className="mt-3 flex items-center justify-center gap-2 text-sm text-[#5DBEBD] hover:text-[#4FA9D8] font-medium transition-colors"
           >
             Open in Google Maps
             <ExternalLink className="w-3.5 h-3.5" />

@@ -62,7 +62,7 @@ export default function TripPlanner() {
               <>
                 <button
                   onClick={() => setFullMapOpen(true)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#E8725A] text-white text-xs font-medium hover:bg-[#D4594A] transition-colors shadow-sm"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#5DBEBD] text-white text-xs font-medium hover:bg-[#4FA9D8] transition-colors shadow-sm"
                 >
                   <Map className="w-3 h-3" />
                   View Route
@@ -72,7 +72,7 @@ export default function TripPlanner() {
                     <div
                       key={i}
                       className={`h-2 w-2 rounded-full border border-[#FAF8F5] ${
-                        ["bg-amber-400", "bg-sky-400", "bg-emerald-400", "bg-violet-400"][i % 4]
+                        ["bg-[#5DBEBD]", "bg-[#4FA9D8]", "bg-[#6AC5C4]", "bg-[#3D8BB8]"][i % 4]
                       }`}
                     />
                   ))}

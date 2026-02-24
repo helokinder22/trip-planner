@@ -63,7 +63,7 @@ export default function AddLocationForm({ onAdd, isOpen, onToggle }) {
           >
             <Button
               onClick={onToggle}
-              className="w-full py-6 bg-gradient-to-r from-[#E8725A] to-[#D4594A] hover:from-[#D4594A] hover:to-[#C04A3C] text-white rounded-2xl shadow-lg shadow-[#E8725A]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#E8725A]/30 text-base font-medium tracking-wide"
+              className="w-full py-6 bg-gradient-to-r from-[#5DBEBD] to-[#4FA9D8] hover:from-[#4FA9D8] hover:to-[#3D8BB8] text-white rounded-2xl shadow-lg shadow-[#5DBEBD]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#5DBEBD]/30 text-base font-medium tracking-wide"
             >
               <Plus className="w-5 h-5 mr-2" />
               Add a destination
@@ -80,7 +80,7 @@ export default function AddLocationForm({ onAdd, isOpen, onToggle }) {
           >
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-[#E8725A] to-[#D4594A] flex items-center justify-center">
+                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-[#5DBEBD] to-[#4FA9D8] flex items-center justify-center">
                   <Sparkles className="w-4 h-4 text-white" />
                 </div>
                 <h3 className="font-semibold text-stone-800">AI Search Destination</h3>
@@ -97,7 +97,7 @@ export default function AddLocationForm({ onAdd, isOpen, onToggle }) {
                     placeholder="Search any place... (e.g. Eiffel Tower, Tokyo Tower)"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    className="rounded-xl border-stone-200 focus:border-[#E8725A] focus:ring-[#E8725A]/20 h-12 text-base"
+                    className="rounded-xl border-stone-200 focus:border-[#5DBEBD] focus:ring-[#5DBEBD]/20 h-12 text-base"
                     autoFocus
                     disabled={isSearching}
                   />
@@ -105,7 +105,7 @@ export default function AddLocationForm({ onAdd, isOpen, onToggle }) {
                 <Button
                   type="submit"
                   disabled={!query.trim() || isSearching}
-                  className="mt-4 w-full bg-gradient-to-r from-[#E8725A] to-[#D4594A] hover:from-[#D4594A] hover:to-[#C04A3C] text-white rounded-xl h-11 font-medium"
+                  className="mt-4 w-full bg-gradient-to-r from-[#5DBEBD] to-[#4FA9D8] hover:from-[#4FA9D8] hover:to-[#3D8BB8] text-white rounded-xl h-11 font-medium"
                 >
                   {isSearching ? (
                     <>
