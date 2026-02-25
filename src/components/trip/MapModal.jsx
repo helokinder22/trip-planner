@@ -13,18 +13,22 @@ const TRANSPORT_MODES = [
 export default function MapModal({ location, previousLocation, open, onClose }) {
   const [mode, setMode] = useState("driving");
   const [userLocation, setUserLocation] = useState(null);
+  const [loadingLocation, setLoadingLocation] = useState(true);
 
   useEffect(() => {
     if (open && navigator.geolocation) {
+      setLoadingLocation(true);
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setUserLocation({
             lat: position.coords.latitude,
             lng: position.coords.longitude
           });
+          setLoadingLocation(false);
         },
         (error) => {
           console.log("Could not get location:", error);
+          setLoadingLocation(false);
         }
       );
     }
@@ -101,17 +105,23 @@ export default function MapModal({ location, previousLocation, open, onClose }) 
           </div>
           
           <div className="rounded-xl overflow-hidden border border-stone-100 shadow-inner">
-            <iframe
-              key={mode}
-              src={buildMapUrl()}
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title={`Map of ${location.name}`}
-            />
+            {loadingLocation ? (
+              <div className="w-full h-[400px] bg-stone-50 flex items-center justify-center">
+                <div className="text-sm text-stone-400">Getting your location...</div>
+              </div>
+            ) : (
+              <iframe
+                key={`${mode}-${userLocation?.lat}-${userLocation?.lng}`}
+                src={buildMapUrl()}
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title={`Map of ${location.name}`}
+              />
+            )}
           </div>
           <a
             href={buildExternalUrl()}
