@@ -14,10 +14,12 @@ export default function MapModal({ location, previousLocation, open, onClose }) 
   const [mode, setMode] = useState("driving");
   const [userLocation, setUserLocation] = useState(null);
   const [loadingLocation, setLoadingLocation] = useState(true);
+  const [locationError, setLocationError] = useState(false);
 
   useEffect(() => {
     if (open && navigator.geolocation) {
       setLoadingLocation(true);
+      setLocationError(false);
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setUserLocation({
@@ -28,7 +30,13 @@ export default function MapModal({ location, previousLocation, open, onClose }) 
         },
         (error) => {
           console.log("Could not get location:", error);
+          setLocationError(true);
           setLoadingLocation(false);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0
         }
       );
     }
@@ -37,10 +45,9 @@ export default function MapModal({ location, previousLocation, open, onClose }) 
   if (!location) return null;
 
   const buildMapUrl = () => {
+    if (!userLocation) return '';
     const destination = encodeURIComponent(location.address || location.name);
-    const origin = userLocation 
-      ? `${userLocation.lat},${userLocation.lng}`
-      : 'current+location';
+    const origin = `${userLocation.lat},${userLocation.lng}`;
     return `https://www.google.com/maps/embed/v1/directions?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&origin=${origin}&destination=${destination}&mode=${mode}`;
   };
 
@@ -108,6 +115,11 @@ export default function MapModal({ location, previousLocation, open, onClose }) 
             {loadingLocation ? (
               <div className="w-full h-[400px] bg-stone-50 flex items-center justify-center">
                 <div className="text-sm text-stone-400">Getting your location...</div>
+              </div>
+            ) : locationError ? (
+              <div className="w-full h-[400px] bg-stone-50 flex flex-col items-center justify-center gap-2 px-6">
+                <div className="text-sm text-stone-600 text-center">Could not access your location</div>
+                <div className="text-xs text-stone-400 text-center">Please enable location access in your browser settings</div>
               </div>
             ) : (
               <iframe
