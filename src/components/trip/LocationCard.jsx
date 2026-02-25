@@ -70,8 +70,16 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
             label="Uber"
             active={false}
             onClick={() => {
-              const destination = encodeURIComponent(location.address || location.name);
-              window.open(`https://m.uber.com/ul/?action=setPickup&dropoff[formatted_address]=${destination}`, '_blank');
+              let uberUrl = 'https://m.uber.com/ul/?action=setPickup';
+              
+              if (location.latitude && location.longitude) {
+                uberUrl += `&dropoff[latitude]=${location.latitude}&dropoff[longitude]=${location.longitude}`;
+              }
+              
+              const formattedAddress = encodeURIComponent(location.address || location.name);
+              uberUrl += `&dropoff[formatted_address]=${formattedAddress}`;
+              
+              window.open(uberUrl, '_blank');
             }}
           />
           <ActionButton
