@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { MapPin, ExternalLink, Car, Footprints, Train, Bike, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,12 +12,32 @@ const TRANSPORT_MODES = [
 
 export default function MapModal({ location, previousLocation, open, onClose }) {
   const [mode, setMode] = useState("driving");
+  const [userLocation, setUserLocation] = useState(null);
+
+  useEffect(() => {
+    if (open && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          });
+        },
+        (error) => {
+          console.log("Could not get location:", error);
+        }
+      );
+    }
+  }, [open]);
 
   if (!location) return null;
 
   const buildMapUrl = () => {
     const destination = encodeURIComponent(location.address || location.name);
-    return `https://www.google.com/maps/embed/v1/directions?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&origin=current+location&destination=${destination}&mode=${mode}`;
+    const origin = userLocation 
+      ? `${userLocation.lat},${userLocation.lng}`
+      : 'current+location';
+    return `https://www.google.com/maps/embed/v1/directions?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&origin=${origin}&destination=${destination}&mode=${mode}`;
   };
 
   const buildExternalUrl = () => {
