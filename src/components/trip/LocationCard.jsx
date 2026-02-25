@@ -43,7 +43,7 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
                 {location.name}
               </h3>
               {location.address && (
-                <p className="text-sm text-stone-400 mt-1 truncate">{location.address}</p>
+                <p className="text-sm text-stone-600 mt-1 truncate">{location.address}</p>
               )}
             </div>
           </div>
