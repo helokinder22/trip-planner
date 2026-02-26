@@ -42,6 +42,24 @@ export default function TripPlanner() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["tripLocations"] }),
   });
 
+  const handleDragEnd = (result) => {
+    if (!result.destination) return;
+    const from = result.source.index;
+    const to = result.destination.index;
+    if (from === to) return;
+
+    const reordered = Array.from(locations);
+    const [moved] = reordered.splice(from, 1);
+    reordered.splice(to, 0, moved);
+
+    // Update order for each affected item
+    reordered.forEach((loc, idx) => {
+      if (loc.order !== idx + 1) {
+        updateMutation.mutate({ id: loc.id, data: { order: idx + 1 } });
+      }
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#5DBEBD]/5 via-white to-[#4FA9D8]/5">
       {/* Header */}
