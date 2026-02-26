@@ -126,6 +126,10 @@ export default function AddLocationForm({ onAdd, isOpen, onToggle }) {
               <>
                 <div className="space-y-4">
                   <div className="p-4 bg-stone-50 rounded-xl border border-stone-100 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <CategoryIcon category={foundLocation.category} size="sm" />
+                      <span className="text-xs font-medium text-stone-400">{getCategoryConfig(foundLocation.category).label}</span>
+                    </div>
                     <Input
                       value={foundLocation.name}
                       onChange={(e) => setFoundLocation({ ...foundLocation, name: e.target.value })}
