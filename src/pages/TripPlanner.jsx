@@ -90,24 +90,42 @@ export default function TripPlanner() {
         ) : locations.length === 0 ? (
           <EmptyState />
         ) : (
-          <div className="space-y-4">
-            <AnimatePresence mode="popLayout">
-              {locations.map((loc, idx) => (
-                <LocationCard
-                  key={loc.id}
-                  location={loc}
-                  index={idx}
-                  onUpdate={(id, data) => updateMutation.mutate({ id, data })}
-                  onDelete={(id) => deleteMutation.mutate(id)}
-                  onShowMap={(loc, prevLoc) => {
-                    setMapLocation(loc);
-                    setMapPreviousLocation(prevLoc);
-                  }}
-                  previousLocation={idx > 0 ? locations[idx - 1] : null}
-                />
-              ))}
-            </AnimatePresence>
-          </div>
+          <DragDropContext onDragEnd={handleDragEnd}>
+            <Droppable droppableId="locations">
+              {(provided) => (
+                <div className="space-y-4" {...provided.droppableProps} ref={provided.innerRef}>
+                  {locations.map((loc, idx) => (
+                    <Draggable key={loc.id} draggableId={loc.id} index={idx}>
+                      {(provided, snapshot) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          style={{
+                            ...provided.draggableProps.style,
+                            opacity: snapshot.isDragging ? 0.85 : 1,
+                          }}
+                        >
+                          <LocationCard
+                            location={loc}
+                            index={idx}
+                            onUpdate={(id, data) => updateMutation.mutate({ id, data })}
+                            onDelete={(id) => deleteMutation.mutate(id)}
+                            onShowMap={(loc, prevLoc) => {
+                              setMapLocation(loc);
+                              setMapPreviousLocation(prevLoc);
+                            }}
+                            previousLocation={idx > 0 ? locations[idx - 1] : null}
+                          />
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         )}
 
         {/* Route connector line */}
