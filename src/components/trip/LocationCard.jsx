@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { MapPin, StickyNote, Trash2, Map, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NotesPanel from "./NotesPanel";
+import CategoryIcon from "./CategoryIcon";
 
 const CARD_COLORS = [
   { bg: "bg-gradient-to-br from-amber-100 to-orange-200", accent: "border-l-amber-500" },
