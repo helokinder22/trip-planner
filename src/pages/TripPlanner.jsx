@@ -64,12 +64,29 @@ export default function TripPlanner() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#5DBEBD]/5 via-white to-[#4FA9D8]/5">
       {/* Header */}
-      <header className="border-b-2 border-[#5DBEBD] w-full">
-        <img 
-          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/699e2cb20cbe0d4ef8ad57e7/3c7d2afae_banner223.png" 
-          alt="Trip Planner" 
-          className="w-full object-cover block"
-        />
+      <header className="border-b-2 border-[#5DBEBD] w-full relative">
+        {bannerExpanded ? (
+          <img
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/699e2cb20cbe0d4ef8ad57e7/3c7d2afae_banner223.png"
+            alt="Trip Planner"
+            className="w-full object-cover block"
+          />
+        ) : (
+          <div className="flex items-center justify-center py-3 bg-white">
+            <span className="text-sm font-semibold tracking-widest text-[#5DBEBD] uppercase">Trip Planner</span>
+          </div>
+        )}
+        <button
+          onClick={() => setBannerExpanded(!bannerExpanded)}
+          className="absolute top-2 right-2 bg-white/80 hover:bg-white text-stone-500 hover:text-stone-800 rounded-full p-1 shadow transition-all"
+          title={bannerExpanded ? "Collapse banner" : "Expand banner"}
+        >
+          {bannerExpanded ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          )}
+        </button>
       </header>
 
       {/* Main content */}
