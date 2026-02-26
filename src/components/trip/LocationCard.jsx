@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 import NotesPanel from "./NotesPanel";
 
 const CARD_COLORS = [
-  { bg: "bg-gradient-to-br from-amber-50 to-orange-50", accent: "border-l-amber-400" },
-  { bg: "bg-gradient-to-br from-sky-50 to-blue-50", accent: "border-l-sky-400" },
-  { bg: "bg-gradient-to-br from-emerald-50 to-green-50", accent: "border-l-emerald-400" },
-  { bg: "bg-gradient-to-br from-violet-50 to-purple-50", accent: "border-l-violet-400" },
-  { bg: "bg-gradient-to-br from-rose-50 to-pink-50", accent: "border-l-rose-400" },
-  { bg: "bg-gradient-to-br from-teal-50 to-cyan-50", accent: "border-l-teal-400" },
+  { bg: "bg-gradient-to-br from-amber-100 to-orange-200", accent: "border-l-amber-500" },
+  { bg: "bg-gradient-to-br from-sky-100 to-blue-200", accent: "border-l-sky-500" },
+  { bg: "bg-gradient-to-br from-emerald-100 to-green-200", accent: "border-l-emerald-500" },
+  { bg: "bg-gradient-to-br from-violet-100 to-purple-200", accent: "border-l-violet-500" },
+  { bg: "bg-gradient-to-br from-rose-100 to-pink-200", accent: "border-l-rose-500" },
+  { bg: "bg-gradient-to-br from-teal-100 to-cyan-200", accent: "border-l-teal-500" },
 ];
 
 export default function LocationCard({ location, index, onUpdate, onDelete, onShowMap, previousLocation }) {
