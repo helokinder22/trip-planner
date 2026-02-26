@@ -123,8 +123,12 @@ export default function AddLocationForm({ onAdd, isOpen, onToggle }) {
             ) : (
               <>
                 <div className="space-y-4">
-                  <div className="p-4 bg-stone-50 rounded-xl border border-stone-100">
-                    <h4 className="font-semibold text-stone-800 mb-1">{foundLocation.name}</h4>
+                  <div className="p-4 bg-stone-50 rounded-xl border border-stone-100 space-y-2">
+                    <Input
+                      value={foundLocation.name}
+                      onChange={(e) => setFoundLocation({ ...foundLocation, name: e.target.value })}
+                      className="font-semibold text-stone-800 rounded-lg border-stone-200 focus:border-[#5DBEBD] focus:ring-[#5DBEBD]/20 h-10"
+                    />
                     <p className="text-sm text-stone-500">{foundLocation.address}</p>
                   </div>
 
