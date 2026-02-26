@@ -39,6 +39,7 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
               <span className="text-[11px] font-bold text-stone-300">{String(index + 1).padStart(2, '0')}</span>
               <div className="h-6 w-px bg-stone-200" />
             </div>
+            <CategoryIcon category={location.category} size="sm" />
             <div className="flex-1 min-w-0">
               <h3 className="font-semibold text-stone-800 text-lg leading-tight truncate">
                 {location.name}
