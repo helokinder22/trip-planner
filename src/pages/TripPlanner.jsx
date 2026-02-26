@@ -13,6 +13,7 @@ import EmptyState from "@/components/trip/EmptyState";
 
 export default function TripPlanner() {
   const [formOpen, setFormOpen] = useState(false);
+  const [bannerExpanded, setBannerExpanded] = useState(true);
   const [mapLocation, setMapLocation] = useState(null);
   const [mapPreviousLocation, setMapPreviousLocation] = useState(null);
   const [fullMapOpen, setFullMapOpen] = useState(false);
