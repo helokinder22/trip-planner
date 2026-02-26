@@ -47,7 +47,7 @@ export default function TripPlanner() {
       <header className="border-b-2 border-[#5DBEBD]">
         <div className="max-w-xl mx-auto px-0 pt-0 pb-0 flex items-center justify-center">
           <img 
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/699e2cb20cbe0d4ef8ad57e7/94e2b927a_Firefly_GeminiFlash_sizeitforaappbannerfortheiphone561590.png" 
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/699e2cb20cbe0d4ef8ad57e7/3c7d2afae_banner223.png" 
             alt="Trip Planner" 
             className="w-full object-cover"
           />
