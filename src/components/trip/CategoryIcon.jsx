@@ -10,7 +10,7 @@ const CATEGORY_CONFIG = {
   entertainment: { icon: Ticket, label: "Entertainment", color: "text-yellow-500 bg-yellow-50" },
   airport: { icon: PlaneLanding, label: "Airport", color: "text-sky-500 bg-sky-50" },
   beach: { icon: Waves, label: "Beach", color: "text-cyan-500 bg-cyan-50" },
-  other: { icon: HelpCircle, label: "Other", color: "text-stone-400 bg-stone-50" },
+  other: { icon: Star, label: "Other", color: "text-stone-400 bg-stone-50" },
 };
 
 export function getCategoryConfig(category) {
