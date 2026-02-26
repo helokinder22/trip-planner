@@ -49,7 +49,7 @@ export default function TripPlanner() {
           <img 
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/699e2cb20cbe0d4ef8ad57e7/94e2b927a_Firefly_GeminiFlash_sizeitforaappbannerfortheiphone561590.png" 
             alt="Trip Planner" 
-            className="w-full max-w-sm object-contain rounded-2xl"
+            className="w-full object-cover"
           />
         </div>
       </header>
