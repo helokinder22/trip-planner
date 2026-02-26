@@ -25,7 +25,8 @@ export default function AddLocationForm({ onAdd, isOpen, onToggle }) {
             name: { type: "string" },
             address: { type: "string" },
             latitude: { type: "number" },
-            longitude: { type: "number" }
+            longitude: { type: "number" },
+            category: { type: "string", enum: ["restaurant", "museum", "hotel", "landmark", "park", "shopping", "entertainment", "airport", "beach", "other"] }
           }
         }
       });
