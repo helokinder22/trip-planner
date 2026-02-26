@@ -1,4 +1,4 @@
-import { Utensils, Landmark, Hotel, MapPin, Trees, ShoppingBag, Ticket, PlaneLanding, Waves, HelpCircle } from "lucide-react";
+import { Utensils, Landmark, Hotel, MapPin, Trees, ShoppingBag, Ticket, PlaneLanding, Waves, Star } from "lucide-react";
 
 const CATEGORY_CONFIG = {
   restaurant: { icon: Utensils, label: "Restaurant", color: "text-orange-500 bg-orange-50" },
