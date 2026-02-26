@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { MapPin, Plus, X, Sparkles, Check, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { base44 } from "@/api/base44Client";
+import CategoryIcon, { getCategoryConfig } from "./CategoryIcon";
 
 export default function AddLocationForm({ onAdd, isOpen, onToggle }) {
   const [query, setQuery] = useState("");
