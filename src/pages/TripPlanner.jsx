@@ -77,14 +77,14 @@ export default function TripPlanner() {
           </div>
         )}
         <button
-          onClick={() => setBannerExpanded(!bannerExpanded)}
-          className="absolute top-2 right-2 bg-white/80 hover:bg-white text-stone-500 hover:text-stone-800 rounded-full p-1 shadow transition-all"
-          title={bannerExpanded ? "Collapse banner" : "Expand banner"}
+          onPointerUp={() => setBannerExpanded(!bannerExpanded)}
+          className="absolute top-2 right-2 bg-white/80 text-stone-500 rounded-full shadow transition-all"
+          style={{ padding: '10px', touchAction: 'manipulation' }}
         >
           {bannerExpanded ? (
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
           ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           )}
         </button>
       </header>
