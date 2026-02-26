@@ -73,7 +73,7 @@ export default function TripPlanner() {
           />
         ) : (
           <div className="flex items-center justify-center py-3 bg-white">
-            <span className="text-sm font-semibold tracking-widest text-[#5DBEBD] uppercase">Trip Planner</span>
+            <span className="text-xl font-bold tracking-widest text-[#5DBEBD] uppercase">Trip Planner</span>
           </div>
         )}
         <button
