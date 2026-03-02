@@ -50,14 +50,26 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
               )}
             </div>
           </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => onDelete(location.id)}
-            className="text-stone-300 hover:text-red-400 hover:bg-red-50 rounded-xl h-8 w-8 -mt-1 -mr-1"
-          >
-            <Trash2 className="w-4 h-4" />
-          </Button>
+          <div className="flex items-center gap-1 -mt-1 -mr-1">
+            <button
+              onClick={() => onUpdate(location.id, { visited: !visited })}
+              className="p-1 rounded-xl transition-colors"
+              title={visited ? "Mark as not visited" : "Mark as visited"}
+            >
+              {visited
+                ? <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                : <Circle className="w-5 h-5 text-stone-300 hover:text-emerald-400" />
+              }
+            </button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => onDelete(location.id)}
+              className="text-stone-300 hover:text-red-400 hover:bg-red-50 rounded-xl h-8 w-8"
+            >
+              <Trash2 className="w-4 h-4" />
+            </Button>
+          </div>
         </div>
 
         {/* Action buttons */}
