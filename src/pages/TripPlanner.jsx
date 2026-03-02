@@ -10,6 +10,7 @@ import LocationCard from "@/components/trip/LocationCard";
 import MapModal from "@/components/trip/MapModal";
 import FullMapView from "@/components/trip/FullMapView";
 import EmptyState from "@/components/trip/EmptyState";
+import Translator from "@/components/trip/Translator";
 
 export default function TripPlanner() {
   const [formOpen, setFormOpen] = useState(false);
