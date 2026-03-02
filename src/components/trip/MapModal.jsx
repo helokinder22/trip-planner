@@ -61,79 +61,86 @@ export default function MapModal({ location, previousLocation, open, onClose }) 
     return `http://maps.apple.com/?daddr=${destination}&dirflg=${modeMap[mode]}`;
   };
 
+  if (!open) return null;
+
   return (
-    <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[700px] p-0 rounded-2xl overflow-hidden border-0">
-        <DialogHeader className="p-5 pb-3">
-          <DialogTitle className="flex items-center gap-2 text-stone-800">
-            <div className="h-7 w-7 rounded-full bg-[#5DBEBD]/10 flex items-center justify-center">
-              <MapPin className="w-3.5 h-3.5 text-[#5DBEBD]" />
-            </div>
-            {location.name}
-          </DialogTitle>
-          {location.address && (
-            <p className="text-sm text-stone-400 ml-9">{location.address}</p>
-          )}
-          <p className="text-xs text-stone-400 ml-9 mt-1">From: Your current location</p>
-        </DialogHeader>
-        <div className="px-5 pb-5">
-          <div className="mb-4">
-            <p className="text-xs font-medium text-stone-400 uppercase tracking-wider mb-2">
-              Transportation Mode
-            </p>
-            <div className="grid grid-cols-4 gap-2">
-              {TRANSPORT_MODES.map(({ value, label, icon: Icon }) => (
-                <button
-                  key={value}
-                  onClick={() => setMode(value)}
-                  className={`flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl transition-all duration-200 ${
-                    mode === value
-                      ? "bg-[#5DBEBD] text-white shadow-md shadow-[#5DBEBD]/20"
-                      : "bg-stone-50 text-stone-500 hover:bg-stone-100 hover:text-stone-700"
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  <span className="text-[11px] font-medium">{label}</span>
-                </button>
-              ))}
-            </div>
+    <div className="fixed inset-0 z-50 flex flex-col bg-white">
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 py-3 border-b border-stone-100 bg-white shrink-0">
+        <div className="flex items-center gap-2">
+          <div className="h-7 w-7 rounded-full bg-[#5DBEBD]/10 flex items-center justify-center">
+            <MapPin className="w-3.5 h-3.5 text-[#5DBEBD]" />
           </div>
-          
-          <div className="rounded-xl overflow-hidden border border-stone-100 shadow-inner">
-            {loadingLocation ? (
-              <div className="w-full h-[400px] bg-stone-50 flex items-center justify-center">
-                <div className="text-sm text-stone-400">Getting your location...</div>
-              </div>
-            ) : locationError ? (
-              <div className="w-full h-[400px] bg-stone-50 flex flex-col items-center justify-center gap-2 px-6">
-                <div className="text-sm text-stone-600 text-center">Could not access your location</div>
-                <div className="text-xs text-stone-400 text-center">Please enable location access in your browser settings</div>
-              </div>
-            ) : (
-              <iframe
-                key={`${mode}-${userLocation?.lat}-${userLocation?.lng}`}
-                src={buildMapUrl()}
-                width="100%"
-                height="400"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title={`Map of ${location.name}`}
-              />
-            )}
+          <div>
+            <p className="font-semibold text-stone-800 text-sm">{location.name}</p>
+            {location.address && <p className="text-xs text-stone-400 truncate max-w-[200px]">{location.address}</p>}
           </div>
-          <a
-            href={buildExternalUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-3 flex items-center justify-center gap-2 text-sm text-[#5DBEBD] hover:text-[#4FA9D8] font-medium transition-colors"
-          >
-            Open in Maps
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
         </div>
-      </DialogContent>
-    </Dialog>
+        <button
+          onClick={onClose}
+          className="h-9 w-9 rounded-full bg-stone-100 flex items-center justify-center hover:bg-stone-200 transition-colors"
+        >
+          <X className="w-5 h-5 text-stone-600" />
+        </button>
+      </div>
+
+      {/* Transport mode selector */}
+      <div className="px-4 py-3 border-b border-stone-100 bg-white shrink-0">
+        <div className="grid grid-cols-4 gap-2">
+          {TRANSPORT_MODES.map(({ value, label, icon: Icon }) => (
+            <button
+              key={value}
+              onClick={() => setMode(value)}
+              className={`flex flex-col items-center gap-1 py-2 rounded-xl transition-all duration-200 ${
+                mode === value
+                  ? "bg-[#5DBEBD] text-white shadow-md shadow-[#5DBEBD]/20"
+                  : "bg-stone-50 text-stone-500 hover:bg-stone-100"
+              }`}
+            >
+              <Icon className="w-4 h-4" />
+              <span className="text-[10px] font-medium">{label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Map fills remaining space */}
+      <div className="flex-1 overflow-hidden">
+        {loadingLocation ? (
+          <div className="w-full h-full bg-stone-50 flex items-center justify-center">
+            <p className="text-sm text-stone-400">Getting your location...</p>
+          </div>
+        ) : locationError ? (
+          <div className="w-full h-full bg-stone-50 flex flex-col items-center justify-center gap-2 px-6">
+            <p className="text-sm text-stone-600 text-center">Could not access your location</p>
+            <p className="text-xs text-stone-400 text-center">Please enable location access in your browser settings</p>
+          </div>
+        ) : (
+          <iframe
+            key={`${mode}-${userLocation?.lat}-${userLocation?.lng}`}
+            src={buildMapUrl()}
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title={`Map of ${location.name}`}
+          />
+        )}
+      </div>
+
+      {/* Footer */}
+      <div className="px-4 py-3 border-t border-stone-100 bg-white shrink-0">
+        <a
+          href={buildExternalUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 text-sm text-[#5DBEBD] font-medium"
+        >
+          Open in Maps <ExternalLink className="w-3.5 h-3.5" />
+        </a>
+      </div>
+    </div>
   );
 }

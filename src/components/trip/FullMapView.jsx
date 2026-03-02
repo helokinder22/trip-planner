@@ -26,83 +26,42 @@ export default function FullMapView({ locations, open, onClose }) {
     return `https://www.google.com/maps/embed/v1/directions?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&origin=${origin}&destination=${destination}${waypointParam}&mode=driving`;
   };
 
-  return (
-    <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[95vw] max-w-[95vw] h-[90vh] p-0 rounded-2xl overflow-hidden border-0">
-        <DialogHeader className="p-5 pb-3 border-b border-stone-100">
-          <DialogTitle className="flex items-center gap-2 text-stone-800">
-            <div className="h-7 w-7 rounded-full bg-[#5DBEBD]/10 flex items-center justify-center">
-              <MapPin className="w-3.5 h-3.5 text-[#5DBEBD]" />
-            </div>
-            Full Trip Route
-          </DialogTitle>
-          <p className="text-sm text-stone-400 ml-9">{locations.length} stops on your journey</p>
-        </DialogHeader>
-        
-        <div className="flex-1 h-full overflow-hidden">
-          <div className="grid md:grid-cols-[320px,1fr] h-full">
-            {/* Sidebar with route details */}
-            <div className="bg-stone-50 p-4 overflow-y-auto border-r border-stone-100 hidden md:block">
-              <h3 className="text-xs font-semibold text-stone-400 uppercase tracking-wider mb-3">
-                Your Route
-              </h3>
-              <div className="space-y-3">
-                {locations.map((loc, idx) => {
-                  const TransportIcon = getTransportIcon(loc.transportation);
-                  return (
-                    <div key={loc.id}>
-                      <div className="flex items-start gap-3">
-                        <div className="flex flex-col items-center">
-                          <div className="h-8 w-8 rounded-full bg-white border-2 border-[#5DBEBD] flex items-center justify-center shadow-sm">
-                            <span className="text-xs font-bold text-[#5DBEBD]">{idx + 1}</span>
-                          </div>
-                          {idx < locations.length - 1 && (
-                            <div className="w-0.5 h-12 bg-stone-200 my-1" />
-                          )}
-                        </div>
-                        <div className="flex-1 pb-2">
-                          <h4 className="font-semibold text-stone-800 text-sm">{loc.name}</h4>
-                          {loc.address && (
-                            <p className="text-xs text-stone-400 mt-0.5 line-clamp-2">{loc.address}</p>
-                          )}
-                          {loc.transportation && TransportIcon && (
-                            <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-white border border-stone-200 text-xs font-medium text-stone-600">
-                              <TransportIcon className="w-3 h-3" />
-                              {getTransportLabel(loc.transportation)}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      {idx < locations.length - 1 && loc.transportation && TransportIcon && (
-                        <div className="ml-4 pl-4 py-2 border-l-2 border-stone-200">
-                          <div className="flex items-center gap-2 text-xs text-stone-400">
-                            <Navigation className="w-3 h-3" />
-                            <span>Travel by {getTransportLabel(loc.transportation).toLowerCase()}</span>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+  if (!open) return null;
 
-            {/* Map */}
-            <div className="relative h-full">
-              <iframe
-                src={buildMapUrl()}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Full trip route"
-              />
-            </div>
+  return (
+    <div className="fixed inset-0 z-50 flex flex-col bg-white">
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 py-3 border-b border-stone-100 bg-white shrink-0">
+        <div className="flex items-center gap-2">
+          <div className="h-7 w-7 rounded-full bg-[#5DBEBD]/10 flex items-center justify-center">
+            <MapPin className="w-3.5 h-3.5 text-[#5DBEBD]" />
+          </div>
+          <div>
+            <p className="font-semibold text-stone-800 text-sm">Full Trip Route</p>
+            <p className="text-xs text-stone-400">{locations.length} stops</p>
           </div>
         </div>
-      </DialogContent>
-    </Dialog>
+        <button
+          onClick={onClose}
+          className="h-9 w-9 rounded-full bg-stone-100 flex items-center justify-center hover:bg-stone-200 transition-colors"
+        >
+          <X className="w-5 h-5 text-stone-600" />
+        </button>
+      </div>
+
+      {/* Map fills remaining space */}
+      <div className="flex-1 overflow-hidden">
+        <iframe
+          src={buildMapUrl()}
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Full trip route"
+        />
+      </div>
+    </div>
   );
 }
