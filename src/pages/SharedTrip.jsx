@@ -80,7 +80,17 @@ export default function SharedTrip() {
       </header>
 
       <main className="max-w-xl mx-auto px-5 py-6 space-y-4">
-        <p className="text-sm text-stone-400 text-center mb-4">Shared trip · {locations.length} stops</p>
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-sm text-stone-400">Shared trip · {locations.length} stops</p>
+          <button
+            onClick={handleCopyTrip}
+            disabled={copying || copied}
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#5DBEBD] text-white text-sm font-medium hover:bg-[#4FA9D8] transition-colors disabled:opacity-70"
+          >
+            {copying ? <Loader2 className="w-4 h-4 animate-spin" /> : copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+            {copied ? "Copied to your trip!" : "Copy to my trip"}
+          </button>
+        </div>
 
         {locations.map((loc, idx) => {
           const colorScheme = CARD_COLORS[idx % CARD_COLORS.length];
