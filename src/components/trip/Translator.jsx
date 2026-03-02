@@ -102,7 +102,7 @@ export default function Translator({ inline }) {
   };
 
   return (
-    <div className="mb-6 bg-white rounded-2xl border border-stone-100 shadow-sm overflow-hidden">
+    <div className={`${inline ? "" : "mb-6"} bg-white rounded-2xl border border-stone-100 shadow-sm overflow-hidden`}>
       <button
         onPointerUp={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between px-5 py-4 text-left"
