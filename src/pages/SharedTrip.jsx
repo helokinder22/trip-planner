@@ -16,6 +16,28 @@ const CARD_COLORS = [
 export default function SharedTrip() {
   const params = new URLSearchParams(window.location.search);
   const token = params.get("token");
+  const [copying, setCopying] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyTrip = async () => {
+    setCopying(true);
+    try {
+      const user = await base44.auth.me();
+      if (!user) {
+        base44.auth.redirectToLogin(window.location.href);
+        return;
+      }
+      // Copy all locations to the current user's account
+      const locsToCopy = locations.map(({ name, address, latitude, longitude, order, transportation, notes, color, category }) => ({
+        name, address, latitude, longitude, order, transportation, notes, color, category
+      }));
+      await base44.entities.TripLocation.bulkCreate(locsToCopy);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3000);
+    } finally {
+      setCopying(false);
+    }
+  };
 
   const { data: shares = [], isLoading: sharesLoading } = useQuery({
     queryKey: ["tripShare", token],
