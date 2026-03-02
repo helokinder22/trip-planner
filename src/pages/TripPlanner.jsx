@@ -92,7 +92,19 @@ export default function TripPlanner() {
 
       {/* Main content */}
       <main className="max-w-xl mx-auto px-5 py-6">
-        <Translator />
+        <div className="flex gap-3 mb-6">
+          <div className="flex-1">
+            <Translator inline />
+          </div>
+          <button
+            onPointerUp={() => setFullMapOpen(true)}
+            style={{ touchAction: "manipulation" }}
+            className="flex flex-col items-center justify-center gap-1 px-4 bg-white rounded-2xl border border-stone-100 shadow-sm hover:shadow-md transition-shadow text-stone-600"
+          >
+            <Map className="w-5 h-5 text-[#5DBEBD]" />
+            <span className="text-xs font-medium">Map</span>
+          </button>
+        </div>
         <AddLocationForm
           onAdd={(data) => createMutation.mutate(data)}
           isOpen={formOpen}
