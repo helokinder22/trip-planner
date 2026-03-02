@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, StickyNote, Trash2, Map, Car } from "lucide-react";
+import { MapPin, StickyNote, Trash2, Map, Car, CheckCircle2, Circle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NotesPanel from "./NotesPanel";
 import CategoryIcon from "./CategoryIcon";
