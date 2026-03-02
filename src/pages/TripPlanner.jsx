@@ -112,6 +112,7 @@ export default function TripPlanner() {
             <span className="text-xs font-medium">Map</span>
           </button>
           {user && <ShareButton userEmail={user.email} />}
+          {user && <ExportButton locations={locations} />}
         </div>
         <AddLocationForm
           onAdd={(data) => createMutation.mutate(data)}
