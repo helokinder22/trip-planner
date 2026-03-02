@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { MapPin, ExternalLink, Car, Footprints, Train, Bike } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { MapPin, ExternalLink, Car, Footprints, Train, Bike, X } from "lucide-react";
 
 const TRANSPORT_MODES = [
   { value: "driving", label: "Driving", icon: Car },

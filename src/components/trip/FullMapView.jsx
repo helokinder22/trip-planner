@@ -1,6 +1,5 @@
 import React from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { MapPin, Navigation } from "lucide-react";
+import { MapPin, Navigation, X } from "lucide-react";
 import { getTransportIcon, getTransportLabel } from "./TransportPicker";
 
 export default function FullMapView({ locations, open, onClose }) {
