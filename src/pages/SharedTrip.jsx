@@ -75,8 +75,14 @@ export default function SharedTrip() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#5DBEBD]/5 via-white to-[#4FA9D8]/5">
-      <header className="border-b-2 border-[#5DBEBD] bg-white flex items-center justify-center py-4">
+      <header className="border-b-2 border-[#5DBEBD] bg-white flex items-center justify-between px-5 py-4">
         <span className="text-xl font-bold tracking-widest text-[#5DBEBD] uppercase">Trip Planner</span>
+        <button
+          onClick={() => base44.auth.redirectToLogin(window.location.href)}
+          className="text-sm text-[#5DBEBD] font-medium border border-[#5DBEBD] rounded-xl px-4 py-1.5 hover:bg-[#5DBEBD]/10 transition-colors"
+        >
+          Sign up / Log in
+        </button>
       </header>
 
       <main className="max-w-xl mx-auto px-5 py-6 space-y-4">
