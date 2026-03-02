@@ -19,7 +19,12 @@ export default function TripPlanner() {
   const [mapLocation, setMapLocation] = useState(null);
   const [mapPreviousLocation, setMapPreviousLocation] = useState(null);
   const [fullMapOpen, setFullMapOpen] = useState(false);
+  const [user, setUser] = useState(null);
   const queryClient = useQueryClient();
+
+  React.useEffect(() => {
+    base44.auth.me().then(setUser).catch(() => {});
+  }, []);
 
   const { data: locations = [], isLoading } = useQuery({
     queryKey: ["tripLocations"],
