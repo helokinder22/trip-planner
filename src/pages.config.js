@@ -50,12 +50,14 @@
 import Home from './pages/Home';
 import TripPlanner from './pages/TripPlanner';
 import SharedTrip from './pages/SharedTrip';
+import ImportTrip from './pages/ImportTrip';
 
 
 export const PAGES = {
     "Home": Home,
     "TripPlanner": TripPlanner,
     "SharedTrip": SharedTrip,
+    "ImportTrip": ImportTrip,
 }
 
 export const pagesConfig = {
