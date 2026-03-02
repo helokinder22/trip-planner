@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
-import { MapPin } from "lucide-react";
+import { MapPin, Copy, Check, Loader2 } from "lucide-react";
 import CategoryIcon from "@/components/trip/CategoryIcon";
 
 const CARD_COLORS = [
