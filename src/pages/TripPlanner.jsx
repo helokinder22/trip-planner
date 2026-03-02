@@ -92,6 +92,7 @@ export default function TripPlanner() {
 
       {/* Main content */}
       <main className="max-w-xl mx-auto px-5 py-6">
+        <Translator />
         <AddLocationForm
           onAdd={(data) => createMutation.mutate(data)}
           isOpen={formOpen}
