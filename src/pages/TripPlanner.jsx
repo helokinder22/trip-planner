@@ -110,6 +110,7 @@ export default function TripPlanner() {
             <Map className="w-5 h-5 text-[#5DBEBD]" />
             <span className="text-xs font-medium">Map</span>
           </button>
+          {user && <ShareButton userEmail={user.email} />}
         </div>
         <AddLocationForm
           onAdd={(data) => createMutation.mutate(data)}
