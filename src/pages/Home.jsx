@@ -1,6 +1,6 @@
 import React from "react";
-import Trips from "./Trips.jsx";
+import TripPlanner from "./TripPlanner";
 
 export default function Home() {
-  return <Trips />;
+  return <TripPlanner />;
 }
