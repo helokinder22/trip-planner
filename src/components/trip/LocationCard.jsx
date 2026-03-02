@@ -30,7 +30,7 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -20, scale: 0.97 }}
       transition={{ duration: 0.35, ease: "easeOut" }}
-      className={`${colorScheme.bg} rounded-2xl border border-white/80 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border-l-4 ${colorScheme.accent}`}
+      className={`${colorScheme.bg} rounded-2xl border border-white/80 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border-l-4 ${colorScheme.accent} ${visited ? "opacity-60" : ""}`}
     >
       <div className="p-5">
         {/* Header */}
