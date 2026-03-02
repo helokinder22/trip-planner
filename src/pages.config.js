@@ -49,11 +49,13 @@
  */
 import Home from './pages/Home';
 import TripPlanner from './pages/TripPlanner';
+import SharedTrip from './pages/SharedTrip';
 
 
 export const PAGES = {
     "Home": Home,
     "TripPlanner": TripPlanner,
+    "SharedTrip": SharedTrip,
 }
 
 export const pagesConfig = {
