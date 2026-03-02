@@ -25,7 +25,7 @@ const LANGUAGES = [
   { label: "Vietnamese", code: "vi-VN" },
 ];
 
-export default function Translator() {
+export default function Translator({ inline }) {
   const [isOpen, setIsOpen] = useState(false);
   const [inputText, setInputText] = useState("");
   const [targetLang, setTargetLang] = useState(LANGUAGES[0]);
