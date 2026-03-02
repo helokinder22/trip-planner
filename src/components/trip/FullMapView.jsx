@@ -3,7 +3,7 @@ import { MapPin, Navigation, X } from "lucide-react";
 import { getTransportIcon, getTransportLabel } from "./TransportPicker";
 
 export default function FullMapView({ locations, open, onClose }) {
-  if (!locations || locations.length === 0) return null;
+  if (!locations || locations.length === 0 || !open) return null;
 
   // Build Google Maps URL with all locations
   const buildMapUrl = () => {
