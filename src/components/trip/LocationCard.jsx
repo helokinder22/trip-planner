@@ -17,6 +17,7 @@ const CARD_COLORS = [
 export default function LocationCard({ location, index, onUpdate, onDelete, onShowMap, previousLocation }) {
   const [activePanel, setActivePanel] = useState(null);
   const colorScheme = CARD_COLORS[index % CARD_COLORS.length];
+  const visited = !!location.visited;
 
   const togglePanel = (panel) => {
     setActivePanel(prev => prev === panel ? null : panel);
