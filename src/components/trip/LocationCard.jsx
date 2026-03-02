@@ -42,7 +42,7 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
             </div>
             <CategoryIcon category={location.category} size="sm" />
             <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-stone-800 text-lg leading-tight truncate">
+              <h3 className={`font-semibold text-lg leading-tight truncate ${visited ? "line-through text-stone-400" : "text-stone-800"}`}>
                 {location.name}
               </h3>
               {location.address && (
