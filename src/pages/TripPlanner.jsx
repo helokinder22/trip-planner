@@ -12,7 +12,6 @@ import FullMapView from "@/components/trip/FullMapView";
 import EmptyState from "@/components/trip/EmptyState";
 import Translator from "@/components/trip/Translator";
 import ShareButton from "@/components/trip/ShareButton";
-import ExportButton from "@/components/trip/ExportButton";
 
 export default function TripPlanner() {
   const [formOpen, setFormOpen] = useState(false);
@@ -112,7 +111,6 @@ export default function TripPlanner() {
             <span className="text-xs font-medium">Map</span>
           </button>
           {user && <ShareButton userEmail={user.email} />}
-          {user && <ExportButton locations={locations} />}
         </div>
         <AddLocationForm
           onAdd={(data) => createMutation.mutate(data)}
