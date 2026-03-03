@@ -48,14 +48,14 @@
  * The mainPage value must match a key in the PAGES object exactly.
  */
 import Home from './pages/Home';
-import TripPlanner from './pages/TripPlanner';
 import SharedTrip from './pages/SharedTrip';
+import TripPlanner from './pages/TripPlanner';
 
 
 export const PAGES = {
     "Home": Home,
-    "TripPlanner": TripPlanner,
     "SharedTrip": SharedTrip,
+    "TripPlanner": TripPlanner,
 }
 
 export const pagesConfig = {

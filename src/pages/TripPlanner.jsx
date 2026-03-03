@@ -8,7 +8,7 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import AddLocationForm from "@/components/trip/AddLocationForm";
 import LocationCard from "@/components/trip/LocationCard";
 import MapModal from "@/components/trip/MapModal";
-import FullMapView from "@/components/trip/FullMapView";
+import FullMapView from "@/components/trip/FullMapView.jsx";
 import EmptyState from "@/components/trip/EmptyState";
 import Translator from "@/components/trip/Translator";
 import ShareButton from "@/components/trip/ShareButton";
