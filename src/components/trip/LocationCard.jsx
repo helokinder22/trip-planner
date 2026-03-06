@@ -113,6 +113,13 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
             hasContent={!!location.notes}
             onClick={() => togglePanel("notes")}
           />
+          <ActionButton
+            icon={Camera}
+            label="Photos"
+            active={activePanel === "photos"}
+            hasContent={!!(location.photos && location.photos.length > 0)}
+            onClick={() => togglePanel("photos")}
+          />
         </div>
 
         {/* Expandable panels */}
