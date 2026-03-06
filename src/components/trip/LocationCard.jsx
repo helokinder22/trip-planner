@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, StickyNote, Trash2, Map, Car, CheckCircle2, Circle } from "lucide-react";
+import { StickyNote, Trash2, Map, Car, CheckCircle2, Circle, Link } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NotesPanel from "./NotesPanel";
+import ReservationPanel from "./ReservationPanel";
 import CategoryIcon from "./CategoryIcon";
 
 const CARD_COLORS = [
