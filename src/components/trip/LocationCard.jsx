@@ -144,7 +144,7 @@ function ActionButton({ icon: Icon, label, active, hasContent, onClick }) {
       <Icon className="w-3.5 h-3.5" />
       {label}
       {hasContent && !active && (
-        <span className="w-1.5 h-1.5 rounded-full bg-[#E8725A]" />
+        <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
       )}
     </button>
   );
