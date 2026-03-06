@@ -99,18 +99,18 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
             }}
           />
           <ActionButton
+            icon={Link}
+            label="Stay"
+            active={activePanel === "reservation"}
+            hasContent={!!location.reservation_url}
+            onClick={() => togglePanel("reservation")}
+          />
+          <ActionButton
             icon={StickyNote}
             label="Notes"
             active={activePanel === "notes"}
             hasContent={!!location.notes}
             onClick={() => togglePanel("notes")}
-          />
-          <ActionButton
-            icon={Link}
-            label="Book"
-            active={activePanel === "reservation"}
-            hasContent={!!location.reservation_url}
-            onClick={() => togglePanel("reservation")}
           />
         </div>
 
