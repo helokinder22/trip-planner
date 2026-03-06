@@ -124,6 +124,7 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
           reservationUrl={location.reservation_url}
           onSave={(url) => onUpdate(location.id, { reservation_url: url })}
           isOpen={activePanel === "reservation"}
+          locationName={location.name}
         />
       </div>
     </motion.div>
