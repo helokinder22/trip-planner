@@ -135,7 +135,7 @@ function ActionButton({ icon: Icon, label, active, hasContent, onClick }) {
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium transition-all duration-200 ${
+      className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium transition-all duration-200 flex-1 justify-center ${
         active
           ? "bg-stone-800 text-white shadow-md"
           : "bg-white/60 text-stone-500 hover:bg-white hover:text-stone-700 hover:shadow-sm border border-white/80"
