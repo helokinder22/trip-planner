@@ -74,7 +74,7 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
         </div>
 
         {/* Action buttons */}
-        <div className="flex gap-2 mt-4">
+        <div className="flex gap-2 mt-4 flex-wrap">
           <ActionButton
             icon={Map}
             label="Map"
