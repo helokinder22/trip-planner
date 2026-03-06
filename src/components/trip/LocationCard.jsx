@@ -134,6 +134,11 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
           isOpen={activePanel === "reservation"}
           locationName={location.name}
         />
+        <PhotosPanel
+          photos={location.photos || []}
+          onSave={(photos) => onUpdate(location.id, { photos })}
+          isOpen={activePanel === "photos"}
+        />
       </div>
     </motion.div>
   );
