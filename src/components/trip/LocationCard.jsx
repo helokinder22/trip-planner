@@ -105,6 +105,13 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
             hasContent={!!location.notes}
             onClick={() => togglePanel("notes")}
           />
+          <ActionButton
+            icon={Link}
+            label="Book"
+            active={activePanel === "reservation"}
+            hasContent={!!location.reservation_url}
+            onClick={() => togglePanel("reservation")}
+          />
         </div>
 
         {/* Expandable panels */}
@@ -112,6 +119,11 @@ export default function LocationCard({ location, index, onUpdate, onDelete, onSh
           notes={location.notes}
           onSave={(notes) => onUpdate(location.id, { notes })}
           isOpen={activePanel === "notes"}
+        />
+        <ReservationPanel
+          reservationUrl={location.reservation_url}
+          onSave={(url) => onUpdate(location.id, { reservation_url: url })}
+          isOpen={activePanel === "reservation"}
         />
       </div>
     </motion.div>
