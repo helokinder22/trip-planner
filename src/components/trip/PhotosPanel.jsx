@@ -1,6 +1,17 @@
 import React, { useRef, useState } from "react";
 import { base44 } from "@/api/base44Client";
-import { Camera, X, Loader2, ImagePlus } from "lucide-react";
+import { Camera, X, Loader2, ImagePlus, Download } from "lucide-react";
+
+const downloadPhoto = async (url, idx) => {
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `photo-${idx + 1}.jpg`;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+};
 
 export default function PhotosPanel({ photos = [], onSave, isOpen }) {
   const [uploading, setUploading] = useState(false);
