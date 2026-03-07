@@ -20,6 +20,20 @@ export default function PhotosPanel({ photos = [], onSave, isOpen }) {
 
   if (!isOpen) return null;
 
+  if (selectedPhoto !== null) {
+    return (
+      <div className="fixed inset-0 z-50 bg-black flex items-center justify-center" onClick={() => setSelectedPhoto(null)}>
+        <button
+          className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 rounded-full p-2 transition-colors"
+          onClick={() => setSelectedPhoto(null)}
+        >
+          <X className="w-6 h-6 text-white" />
+        </button>
+        <img src={selectedPhoto} alt="" className="max-w-full max-h-full object-contain" onClick={e => e.stopPropagation()} />
+      </div>
+    );
+  }
+
   const handleFileChange = async (e) => {
     const files = Array.from(e.target.files);
     if (!files.length) return;
