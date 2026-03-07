@@ -107,5 +107,6 @@ export default function PhotosPanel({ photos = [], onSave, isOpen }) {
         </div>
       )}
     </div>
+    </>
   );
 }
