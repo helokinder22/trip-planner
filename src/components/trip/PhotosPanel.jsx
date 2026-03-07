@@ -88,7 +88,7 @@ export default function PhotosPanel({ photos = [], onSave, isOpen }) {
         <div className="grid grid-cols-3 gap-2">
           {photos.map((url, idx) => (
             <div key={idx} className="relative group aspect-square rounded-xl overflow-hidden">
-              <img src={url} alt="" className="w-full h-full object-cover" />
+              <img src={url} alt="" className="w-full h-full object-cover cursor-pointer" onClick={() => setSelectedPhoto(url)} />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
               <button
                 onClick={() => removePhoto(idx)}
