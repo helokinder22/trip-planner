@@ -41,20 +41,29 @@ export default function PhotosPanel({ photos = [], onSave, isOpen }) {
   };
 
   return (
-    <>
-    {selectedPhoto && createPortal(
-      <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center" onClick={() => setSelectedPhoto(null)}>
-        <button
-          className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 rounded-full p-2 transition-colors"
+    <div className="mt-3 pt-3 border-t border-white/50 space-y-3">
+      {selectedPhoto && createPortal(
+        <div
+          className="fixed inset-0 bg-black flex items-center justify-center"
+          style={{ zIndex: 9999 }}
           onClick={() => setSelectedPhoto(null)}
         >
-          <X className="w-6 h-6 text-white" />
-        </button>
-        <img src={selectedPhoto} alt="" className="max-w-full max-h-full object-contain" onClick={e => e.stopPropagation()} />
-      </div>,
-      document.body
-    )}
-    <div className="mt-3 pt-3 border-t border-white/50 space-y-3">
+          <button
+            className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 rounded-full p-2 transition-colors"
+            onClick={() => setSelectedPhoto(null)}
+          >
+            <X className="w-6 h-6 text-white" />
+          </button>
+          <img
+            src={selectedPhoto}
+            alt=""
+            className="max-w-full max-h-full object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>,
+        document.body
+      )}
+
       <div className="flex items-center justify-between">
         <p className="text-xs font-medium text-stone-500">Photos</p>
         <button
@@ -88,7 +97,12 @@ export default function PhotosPanel({ photos = [], onSave, isOpen }) {
         <div className="grid grid-cols-3 gap-2">
           {photos.map((url, idx) => (
             <div key={idx} className="relative group aspect-square rounded-xl overflow-hidden">
-              <img src={url} alt="" className="w-full h-full object-cover cursor-pointer" onClick={() => setSelectedPhoto(url)} />
+              <img
+                src={url}
+                alt=""
+                className="w-full h-full object-cover cursor-pointer"
+                onClick={() => setSelectedPhoto(url)}
+              />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
               <button
                 onClick={() => removePhoto(idx)}
@@ -107,6 +121,5 @@ export default function PhotosPanel({ photos = [], onSave, isOpen }) {
         </div>
       )}
     </div>
-    </>
   );
 }
