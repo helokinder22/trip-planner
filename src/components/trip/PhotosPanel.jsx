@@ -74,11 +74,18 @@ export default function PhotosPanel({ photos = [], onSave, isOpen }) {
           {photos.map((url, idx) => (
             <div key={idx} className="relative group aspect-square rounded-xl overflow-hidden">
               <img src={url} alt="" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
               <button
                 onClick={() => removePhoto(idx)}
                 className="absolute top-1 right-1 bg-black/50 rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
               >
                 <X className="w-3 h-3 text-white" />
+              </button>
+              <button
+                onClick={() => downloadPhoto(url, idx)}
+                className="absolute bottom-1 right-1 bg-black/50 rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <Download className="w-3 h-3 text-white" />
               </button>
             </div>
           ))}
