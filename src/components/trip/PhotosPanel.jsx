@@ -41,6 +41,19 @@ export default function PhotosPanel({ photos = [], onSave, isOpen }) {
   };
 
   return (
+    <>
+    {selectedPhoto && createPortal(
+      <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center" onClick={() => setSelectedPhoto(null)}>
+        <button
+          className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 rounded-full p-2 transition-colors"
+          onClick={() => setSelectedPhoto(null)}
+        >
+          <X className="w-6 h-6 text-white" />
+        </button>
+        <img src={selectedPhoto} alt="" className="max-w-full max-h-full object-contain" onClick={e => e.stopPropagation()} />
+      </div>,
+      document.body
+    )}
     <div className="mt-3 pt-3 border-t border-white/50 space-y-3">
       <div className="flex items-center justify-between">
         <p className="text-xs font-medium text-stone-500">Photos</p>
