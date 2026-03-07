@@ -15,6 +15,7 @@ const downloadPhoto = async (url, idx) => {
 
 export default function PhotosPanel({ photos = [], onSave, isOpen }) {
   const [uploading, setUploading] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
   const fileInputRef = useRef(null);
 
   if (!isOpen) return null;
