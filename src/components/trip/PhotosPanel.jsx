@@ -103,7 +103,7 @@ export default function PhotosPanel({ photos = [], onSave, isOpen }) {
                 className="w-full h-full object-cover cursor-pointer"
                 onClick={() => setSelectedPhoto(url)}
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors pointer-events-none" />
               <button
                 onClick={() => removePhoto(idx)}
                 className="absolute top-1 right-1 bg-black/50 rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
