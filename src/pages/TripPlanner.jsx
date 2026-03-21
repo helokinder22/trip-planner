@@ -12,6 +12,7 @@ import FullMapView from "@/components/trip/FullMapView.jsx";
 import EmptyState from "@/components/trip/EmptyState";
 import Translator from "@/components/trip/Translator";
 import ShareButton from "@/components/trip/ShareButton";
+import DistanceBadge from "@/components/trip/DistanceBadge";
 
 export default function TripPlanner() {
   const [formOpen, setFormOpen] = useState(false);
