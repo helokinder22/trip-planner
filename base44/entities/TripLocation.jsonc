@@ -1,0 +1,83 @@
+{
+  "name": "TripLocation",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the location"
+    },
+    "address": {
+      "type": "string",
+      "description": "Full address of the location"
+    },
+    "latitude": {
+      "type": "number",
+      "description": "Latitude coordinate"
+    },
+    "longitude": {
+      "type": "number",
+      "description": "Longitude coordinate"
+    },
+    "order": {
+      "type": "number",
+      "description": "Order in the trip itinerary"
+    },
+    "transportation": {
+      "type": "string",
+      "enum": [
+        "car",
+        "train",
+        "bus",
+        "plane",
+        "walk",
+        "bike",
+        "ferry",
+        "taxi"
+      ],
+      "description": "How to get to this location"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notes about this location"
+    },
+    "color": {
+      "type": "string",
+      "description": "Accent color for the card"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "restaurant",
+        "museum",
+        "hotel",
+        "landmark",
+        "park",
+        "shopping",
+        "entertainment",
+        "airport",
+        "beach",
+        "other"
+      ],
+      "description": "Category of the location"
+    },
+    "visited": {
+      "type": "boolean",
+      "description": "Whether the user has visited this location",
+      "default": false
+    },
+    "reservation_url": {
+      "type": "string",
+      "description": "Link to hotel, Airbnb, or other reservation"
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of uploaded photo URLs for this location"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
